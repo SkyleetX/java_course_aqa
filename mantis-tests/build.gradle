@@ -1,0 +1,34 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.5'
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.1.3'
+    implementation 'org.hamcrest:hamcrest:2.2'
+    implementation 'com.google.http-client:google-http-client-apache:2.1.2'
+    implementation 'commons-net:commons-net:3.8.0'
+    implementation 'org.subethamail:subethasmtp:3.1.7'
+    implementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.8'
+}
+
+test {
+    useTestNG()
+}
+//task testGroups (type: Test) {
+//    useTestNG {
+//        suites 'src/test/resources/testng.xml'
+//    }
+//    if (project.hasProperty('browser')) {
+//        systemProperty 'browser', "$(browser)"
+//    }
+//    if (project.hasProperty('target')) {
+//        systemProperty 'target', "$(target)"
+//    }
+//    if (project.hasProperty('verifyUI')) {
+//        systemProperty 'verifyUI', "$(verifyUI)"
+//    }
+//}

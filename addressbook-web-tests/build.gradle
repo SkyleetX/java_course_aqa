@@ -1,0 +1,45 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.5'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.1.4'
+    implementation 'org.hamcrest:hamcrest:2.2'
+    implementation 'com.beust:jcommander:1.82'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.19'
+    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
+    implementation 'mysql:mysql-connector-java:8.0.29'
+    implementation 'org.hibernate:hibernate-core:6.0.2.Final'
+}
+
+task testGroups(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-groups.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+}
+
+task testContacts(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-contacts.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+}
+
+test {
+    useTestNG()
+}
